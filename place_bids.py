@@ -1,5 +1,4 @@
 import os
-import os
 import time
 
 import requests
@@ -61,7 +60,8 @@ def sample_search_projects():
         projects = search_projects(
             session,
             query=query,
-            search_filter=search_filter
+            search_filter=search_filter,
+            active_only=True
         )
 
     except ProjectsNotFoundException as e:
