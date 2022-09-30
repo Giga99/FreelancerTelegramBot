@@ -93,7 +93,12 @@ while True:
                 'offset': 0,
             }
 
-            amount = int((project.get('budget').get('maximum') + project.get('budget').get('minimum')) / 2)
+            maximum = project.get('budget').get('maximum')
+            minimum = project.get('budget').get('minimum')
+            minimum = 0 if minimum is None else minimum
+            maximum = minimum if maximum is None else maximum
+            amount = int((maximum + minimum) / 2)
+            amount = amount if amount > 0 else 45
 
             try:
                 bid = get_bids(session, **get_bids_data)
